@@ -1,104 +1,64 @@
 
-let doList = document.getElementById('myUL');
-import { v4 as uuidv4 } from 'uuid';
+let doList = document.getElementById('myList');
 
-const uniqueId = uuid.v4(); //unique id key 
-let tasks = [
-    {    
-    "Go to the Gym": uniqueId
-    },
-    {
-    "Finish School Project": uniqueId
-    },
+let list = JSON.parse(localStorage.getItem('list')) || []; // storing list array
 
-    {
-    "Eat Lunch": uniqueId
-    },
 
-    {
-    "Do Hot Yoga": uniqueId
-    },
-    
-    {
-    "Spend time with Family": uniqueId
-    }
+// list function
+const showList = (list, text) => {
+    let doList = document.getElementById('myList');
+    doList.innerHTML = "";
 
-]
+    list.map(({text, id}) => {
 
-// creating to do list item
-for (let i of arr) {
-    let task = document.createElement('li');
-    task.innerHTML = i;
-    tasks.appendChild(task);
+        let li = document.createElement("li");
+        let removeBox = document.createElement('input');
+
+        removeBox.type = 'checkbox';
+        removeBox.className = "removeBtn"; 
+
+        li.setAttribute('id', id);
+        li.className = 'myInput';
+        li.appendChild(removeBox);
+        li.appendChild(document.createTextNode(text));
+
+        doList.appendChild(li);
+        })
 }
 
-// appending array of task objects to ul - doList
-doList.appendChild(tasks);
+showList(list);
 
 
-// creating local storage for array and into strings 
-const myJSON = JSON.stringify(tasks);
-localStorage.setItem("storedJSON", myJSON);
-
-//retrieving local storage string back as an array
-let array = localStorage.getItem("storedJSON");
-let obj = JSON.parse(array);
-
-
-// close button and append ot each list item
-
-let myNodelist = document.getElementsByTagName('LI');
-for (i = 0; i < myNodelist.length; i++) {
-    let span = document.createElement("SPAN");
-    let txt = document.createTextNode("\u00D7");
-    span.className = 'close'; 
-    span.appendChild(txt);
-    myNodelist[i].appendChild(span);
-}
-// creating close button to hide the list item
-let close = document.getElementsByClassName('close');
-let i;
-for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-        let div = this.parentElement;
-        div.style.display = "none"; // hiding 
-    }
-}
-
-// add a "checked" symbol when clicking on a list item
-
-doList.addEventListener('click', function(ev){
-    if (ev.target.tagName === 'LI') {
-        ev.target.classList.toggle('checked');
-    }
-}, false)
-
-// create a new list item when clicking on "Add" button
-
+//add list item function
 function newElement() {
-    let li = document.createElement('li');
-    let inputValue = document.getElementsByID('myInput').value;
-    let t = document.createTextNode(inputValue);
-    li.appendChild(t);
-    //if nothing written
-    if(inputValue === '') {
-        alert("Please enter your to do item");
-    
-    } else {
-        doList.appendChild('li')
-    }
-    document.getElementById('myInput').value = '';
 
-    let span = document.createElement('SPAN');
-    let txt = document.createTextNode('\u00D7');
-    span.className = 'close';
-    span.appendChild(txt);
-    li.appendChild(span);
+        let inputValue = document.getElementById('myInput').value;
+        let inputId = Date.now(); // id key for list items
 
-    for (i = 0; i < close.length; i++) {
-        close[i].onclick = function() {
-          var div = this.parentElement;
-          div.style.display = "none";
-    }
+        if (inputValue === "") {
+            alert("Please enter your text to the list.");
+            return false;
+
+        } else {
+            list.push({text: inputValue, id: inputId});
+            localStorage.setItem("list", JSON.stringify(list)); // setting to local storage 
+        }
+// add to list 
+        showList(list, inputValue);
+        document.getElementById('myInput').value = ''; // returning item element to empty text 
+}
+
+
+function removeElement() {
+    let checkbox = document.getElementsByClassName("removeBtn");
+    let items = document.getElementsByClassName('myInput');
+
+    for (let i = 0; i < checkbox.length; i++) {
+        if (checkbox[i].checked) { // if checked a box to delete item
+            checkbox[i].parentNode.removeChild(checkbox[i]);
+            items[i].parentNode.removeChild(items[i]);
+            list.splice([i], 1); 
+            localStorage.setItem("list", JSON.stringify(list));
+        }
     }
 }
