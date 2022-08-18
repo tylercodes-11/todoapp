@@ -17,12 +17,6 @@ ul li {
     background: #eee;
     font-size: 18px;
     transition: 0.2s;
-    /* make list items unselectable */ 
-
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 /* set all odd list items to different color */
