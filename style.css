@@ -1,162 +1,48 @@
-* {
-    box-sizing: border-box;
+body {
+	background-image: linear-gradient(to right, #ffffff, #fff371);
 }
 
-/* remove margins and padding from list */
-
-ul {
-    margin: 0;
-    padding: 0;
+#addBtn, .delete-box {
+	margin-right: 10px;
 }
 
-ul li {
-
-    cursor: pointer;
-    position: relative;
-    padding: 12px 8px 12px 40px;
-    background: #eee;
-    font-size: 18px;
-    transition: 0.2s;
+h1 {
+	font-size: 70px;
+    color: white; 
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-shadow: 1px 1px #000000, 
+                 3px 3px #000000, 
+                 4px 4px #000000;
 }
 
-/* set all odd list items to different color */
-
-ul li:nth-child(odd) {
-    background: #f9f9f9;
-
+.delete-box:checked {
+	background-color: red;
+	border-color: red;
 }
 
-/* darker background on hover */
-
-ul li:hover {
-    background: #ddd;
+.list-group-item {
+	margin-bottom: 10px;
 }
 
-/* when clicked, add background color and strike out text */
-
-ul li.checked {
-    background: #888;
-    color: #fff;
-    text-decoration: line-through;
+#todoList {
+	font-family:    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+	width: 90%;
 }
 
+@media only screen and (min-width: 768px) {
+	.row {
+		margin-right: 50px !important;
+		margin-left: 50px !important;
+	}
 
-/* add a "checked" mark when clicked of */
+	#todoList {
+		margin-right: 60px !important;
+		margin-left: 60px !important;
+		font-size: 25px !important;
+		width: 65% !important;
+	}
 
-ul li.checked::before {
-    content: '';
-    position: absolute;
-    border-color: #fff;
-    border-style: solid;
-    border-width: 0 2px 2px 0;
-    top: 10px;
-    left: 16px;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 7px;
-}
-
-
-
-.header {
-    background-color: #c9c294;
-    padding: 30px 40px;
-    color: white;
-    text-align: center
-}
-
-/*  Clear floats after the header */
-.header:after {
-    content: '';
-    display: table;
-    clear: both;
-}
-
-/* style the input */
-
-input {
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    width: 75%;
-    padding: 10px;
-    float: left;
-    font-size: 16px;
-}
-
-/* styling the add button */
-.addBtn {
-    padding: 12px 16px 12px 16px;
-    width: 10%;
-    background: #d9d9d9;
-    color: #555;
-    float: left;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 7px;
-}
-  
-  .addBtn:hover {
-    background-color: rgb(61, 200, 70);
-    color: white;
-
-}
-
-/* styling the close button */
-
-.removeBtn {
-    
-    width: 10%;
-    padding: 12px 16px 12px 16px;
-    background: #d9d9d9;
-    color: #555;
-    float: left;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 7px;
-}
-
-.removeBtn:hover {
-    background-color: #f44336;
-    color: white;
-}
-
-@media screen and (max-width: 992px) {
-
-    .myDiv {
-        margin: 0;
-        padding: 0;
-        display: block;
-    }
- .removeBtn{
-    padding: 12px 70px;
-    background: #d9d9d9;
-    margin-top: 10px;
-    color: #555;
-    display: flex;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.2;
- }
-
- .addBtn {
-    padding: 12px 70px;
-    margin-top: 10px;
-    background: #d9d9d9;
-    color: #555;
-    display: flex;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.2;
-
- }
-
- #myInput {
-    margin: auto;
-    width: 100%;
- }
+	h1 {
+		font-size: 110px;
+	}
 }
